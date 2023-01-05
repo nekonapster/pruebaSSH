@@ -1,0 +1,33 @@
+PASOS.
+
+1. crear llave.
+buscamos la carpeta .ssh y dentro creamos una nueva clave
+ssh-keygen -t ed25519 -C "email@gmail.com"
+
+por default nos creara un archivo donde guardara la clave llamado id_ed25519, nosotros podemos cambiar el nombre. 
+
+passphrase: algo parecido a una contraseña, se puede dejar vacia.
+
+2. iniciar el agente
+eval `ssh-agent -s`
+
+el agente es un programa en segundo plano que estara constantemente comprobando las claves. Es necesario que este arrancado o inicializado sino las claves ssh no funcionaran. 
+
+3. agregar la clave PRIVADA al agente ssh
+ssh-add [ruta completa + nombre del archivo donde esta la clave]
+ssh-add ~/.ssh/nombreDeLaClave
+
+4. buscamos la clave PUBLICA la copiamos y la pegamos en el ssh de gitHub. 
+
+5. generamos un nuevo repo.
+6. pegamos el siguiente codigo para crear un repo nuevo desde la carpeta que querramos subir. 
+
+echo "# repo" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:nekonapster/repo.git
+git push -u origin main
+
+
